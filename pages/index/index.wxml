@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="section">
+    <view class="section-title">本周食材打卡</view>
+    <view>已摄入 {{uniqueIngredients.length}} / 25 种</view>
+    <view class="tag" wx:for="{{uniqueIngredients}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">滚动更新摄入食材</view>
+    <view>{{rollingText}}</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">录入菜名自动分析食材</view>
+    <input class="input" placeholder="例如：番茄鸡蛋面" value="{{dishInput}}" bindinput="onDishInput" />
+    <view class="button-primary" bindtap="analyzeDish">分析并加入</view>
+    <view wx:if="{{lastAnalyzed.length}}">
+      <view>本次识别：</view>
+      <view class="tag" wx:for="{{lastAnalyzed}}" wx:key="*this">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">外卖记录自动录入</view>
+    <textarea class="input" placeholder="粥铺：皮蛋瘦肉粥、鸡肉卷" value="{{takeawayInput}}" bindinput="onTakeawayInput" />
+    <view class="button-primary" bindtap="recordTakeaway">自动录入食材</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">领券跳转点外卖</view>
+    <view>可在小程序内领取优惠券后跳转外卖平台。</view>
+    <view class="button-primary" bindtap="openCoupon">领取并跳转</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">今日三餐推荐</view>
+    <view wx:for="{{mealRecommendations}}" wx:key="meal">
+      <view>{{item.meal}}：{{item.menu}}</view>
+    </view>
+  </view>
+</view>
